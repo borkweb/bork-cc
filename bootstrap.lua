@@ -21,7 +21,8 @@ bootstrap.close()
 -- by default.
 apis = {
   "bork-cc",
-  "installer"
+  "installer",
+	"turtle-plus"
 }
 
 programs = {
