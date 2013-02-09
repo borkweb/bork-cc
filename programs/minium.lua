@@ -27,7 +27,7 @@ while work do
 	for key,slot in pairs( slots ) do
 		slot.num = turtle.load( slot.id, 'suck' )
 
-		if 0 == slot.contains then
+		if 0 == slot.num then
 			slot.num = turtle.distribute( slot.id, slots )
 		end
 

@@ -44,7 +44,7 @@ function turtle.load( slot, how )
 
 	num = turtle.getItemCount( slot )
 
-	if 0 == contains then
+	if 0 == num then
 		turtle[how]()
 		num = turtle.getItemCount( slot )
 	end
