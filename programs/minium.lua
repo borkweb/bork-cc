@@ -7,20 +7,48 @@ local num = 0
 local which = 'medium'
 local from = 'left'
 local to = 'right'
+local recipe_type = 'normal'
 
-print('Which recipe should I make?')
+print('Should I make a (m)inium or (n)ormal recipe?')
+
+recipe_type = read()
+
+if 'm' == recipe_type then
+	recipe_type = 'minium'
+else
+	recipe_type = 'normal'
+end
+
+nextScreen()
+print('What type of ' .. recipe_type .. ' recipe should I make?')
 print('-----------');
-print('(s)mall  = minium + 2 slots')
-print('(m)edium = minium + 4 slots')
-print('(l)arge  = minium + 10 slots')
+if 'minium' == recipe_type then
+	print('(s)mall  = minium + 2 slots')
+	print('(m)edium = minium + 4 slots')
+	print('(l)arge  = minium + 10 slots')
+else
+	print('(s)quare  = 4 slots in a square')
+	print('Derp. Use an auto crafting table for more complex stuff.')
+end
 print('-----------');
 print('');
-print('Choose: small, medium, or large')
 
 which = read()
 
-print('');
-print('Got it. I will make a ' .. which .. ' minium recipe.')
+if 'minium' == recipe_type then
+	if 's' == which then
+		which = 'small'
+	elseif 'm' == which then
+		which = 'medium'
+	elseif 'l' == which then
+		which = 'large'
+	end
+else
+	which = 'square'
+end
+
+nextScreen()
+print('Got it. I will make a ' .. which .. ' ' .. recipe_type .. ' recipe.')
 print('');
 print('Where do I get stuff? From my:')
 print('  (l)eft, (r)ight,')
@@ -29,7 +57,7 @@ print('  (u)p, or (d)own')
 
 from = read()
 
-print('');
+nextScreen()
 print('Where do I put stuff? To my:');
 print('  (l)eft, (r)ight,')
 print('  (b)ack, (f)ront')
@@ -38,12 +66,16 @@ print('');
 
 to = read()
 
-if 's' == which or 'small' == which then
-	slots = { 2, 3 }
-elseif 'm' == which or 'medium' == which then
-	slots = { 2, 3, 5, 6 }
-elseif 'l' == which or 'large' == which then
-	slots = { 2, 3, 5, 6, 7, 9, 10, 11 }
+if 'minium' == recipe_type then
+	if 's' == which or 'small' == which then
+		slots = { 2, 3 }
+	elseif 'm' == which or 'medium' == which then
+		slots = { 2, 3, 5, 6 }
+	elseif 'l' == which or 'large' == which then
+		slots = { 2, 3, 5, 6, 7, 9, 10, 11 }
+	end
+else
+	slots = { 1, 2, 5, 6 }
 end
 
 while true do
