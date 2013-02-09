@@ -1,18 +1,18 @@
 local slots = {
 	{
-		posiiton = 2,
+		position = 2,
 		contains = 0
 	},
 	{
-		posiiton = 3,
+		position = 3,
 		contains = 0
 	},
 	{
-		posiiton = 5,
+		position = 5,
 		contains = 0
 	},
 	{
-		posiiton = 6,
+		position = 6,
 		contains = 0
 	}
 }
