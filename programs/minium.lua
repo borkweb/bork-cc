@@ -1,3 +1,5 @@
+bork_cc.loadAPI('turtle-plus')
+
 local slots = {
 	{
 		position = 2,
