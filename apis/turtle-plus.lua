@@ -47,6 +47,14 @@ function turtle.load( slot, how )
 	num = turtle.getItemCount( slot )
 
 	if 0 == num then
+		if 'u' == how then
+			how = 'suckUp'
+		elseif 'd' == how then
+			how = 'suckDown'
+		elseif 's' ~= strsub( how, 1, 1 ) then
+			how = 'suck'
+		end
+
 		turtle[how]()
 		num = turtle.getItemCount( slot )
 	end
