@@ -15,7 +15,7 @@ shell.setPath(path .. ":/bork-cc/programs")
 -- While we did set the load path, we can't take advantage of
 -- it while this file is being parsed, so we need to reference
 -- the cc_scripts API using it's full file path.
-os.loadAPI("/bork-cc/apis/bork-cc")
+os.loadAPI("/bork-cc/apis/bork_cc")
 
 -- Print the version of bork-cc in use on startup
 print("bork-cc v" .. bork_cc.versionString())
