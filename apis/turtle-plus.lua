@@ -37,9 +37,23 @@ function turtle.distribute( target_slot, slots )
 	return 0
 end
 
+-- dumps items up, down, or in front
+-- @param to string where to dump
+function turtle.dump( slot, to )
+	turtle.select( slot )
+
+	if 'u' == to or 'up' == from then
+		turtle.dropUp()
+	elseif 'd' == to or 'down' == from then
+		turtle.dropDown()
+	else
+		turtle.drop()
+	end
+end
+
 -- loads items into a slot "how" you want it to. Returns
 -- the number of items loaded
-function turtle.load( slot, how )
+function turtle.load( slot, from )
 	local num = 0
 
 	turtle.select( slot )
@@ -47,17 +61,55 @@ function turtle.load( slot, how )
 	num = turtle.getItemCount( slot )
 
 	if 0 == num then
-		if 'u' == how then
-			how = 'suckUp'
-		elseif 'd' == how then
-			how = 'suckDown'
-		elseif 's' ~= strsub( how, 1, 1 ) then
-			how = 'suck'
+		if 'u' == from or 'up' == from then
+			from = 'suckUp'
+		elseif 'd' == from or 'down' == from then
+			from = 'suckDown'
+		else
+			from = 'suck'
 		end
 
-		turtle[how]()
+		turtle[from]()
 		num = turtle.getItemCount( slot )
 	end
 	
 	return num
+end
+
+-- reset the turtle's orientation
+-- @param from string
+--   l turns right
+--   r turns left
+--   b turns right twice
+--   f does nothing
+--   u does nothing
+--   d does nothing
+function turtle.reset_turn( from )
+	if 'l' == from or 'left' == from then
+		turtle.turnRight()
+	elseif 'r' == from or 'right' == from then
+		turtle.turnLeft()
+	elseif 'b' == from or 'back' == from then
+		turtle.turnLeft()
+		turtle.turnLeft()
+	end
+end
+
+-- changes the turtle's orientation
+-- @param from string
+--   r turns right
+--   l turns left
+--   b turns right twice
+--   f does nothing
+--   u does nothing
+--   d does nothing
+function turtle.turn( to )
+	if 'l' == to or 'left' == to then
+		turtle.turnLeft()
+	elseif 'r' == to or 'right' == to then
+		turtle.turnRight()
+	elseif 'b' == to or 'back' == to then
+		turtle.turnLeft()
+		turtle.turnLeft()
+	end
 end
