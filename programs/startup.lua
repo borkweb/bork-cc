@@ -17,5 +17,5 @@ shell.setPath(path .. ":/bork-cc/programs")
 -- the cc_scripts API using it's full file path.
 os.loadAPI("/bork-cc/apis/bork-cc")
 
--- Print the version of cc-scripts in use on startup
+-- Print the version of bork-cc in use on startup
 print("bork-cc v" .. bork_cc.versionString())
