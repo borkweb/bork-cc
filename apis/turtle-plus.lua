@@ -96,7 +96,7 @@ function turtle.reset_turn( from )
 end
 
 -- changes the turtle's orientation
--- @param from string
+-- @param to string
 --   r turns right
 --   l turns left
 --   b turns right twice

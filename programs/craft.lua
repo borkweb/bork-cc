@@ -69,6 +69,9 @@ print('');
 
 to = read()
 
+print('');
+print('OK! Will do!');
+
 if 'minium' == recipe_type then
 	if 's' == which or 'small' == which then
 		slots = { 2, 3 }
@@ -81,7 +84,7 @@ else
 	slots = { 1, 2, 5, 6 }
 end
 
-while true do
+while work do
 	turtle.turn( from )
 
 	for key,slot in pairs( slots ) do
