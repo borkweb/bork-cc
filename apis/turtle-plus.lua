@@ -33,6 +33,8 @@ function turtle.distribute( target_slot, slots )
 			end
 		end
 	end
+
+	return 0
 end
 
 -- loads items into a slot "how" you want it to. Returns
