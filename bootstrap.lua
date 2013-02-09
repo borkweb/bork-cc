@@ -20,7 +20,7 @@ bootstrap.close()
 -- A manifest of all the APIs and programs the installer will include
 -- by default.
 apis = {
-  "bork-cc",
+  "bork_cc",
   "installer",
 	"turtle-plus"
 }
