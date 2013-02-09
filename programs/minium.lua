@@ -19,47 +19,14 @@ local slots = {
 
 local work = true
 
-function load_items( slot )
-	local contains = 0
-
-	turtle.select( slot )
-
-	contains = turtle.getItemCount( slot )
-
-	if 0 == contains then
-		turtle.suck()
-		contains =  turtle.getItemCount( slot )
-	end
-
-	return contains
-end
-
-function distribute_items( target )
-	local num = 0
-
-	for key,slot in pairs( slots ) do
-		if not ( target == slot.position ) then
-			num = turtle.getItemCount( slot.position )
-
-			if num > 1 then
-				turtle.select( slot.position )
-				turtle.transferTo( target, 1 )
-				return 1
-			end
-		end
-	end
-
-	return 0
-end
-
 while work do
 	turtle.turnLeft()
 
 	for key,slot in pairs( slots ) do
-		slot.contains = load_items( slot.position )
+		slot.contains = turtle.load( slot.position, 'suck' )
 
 		if 0 == slot.contains then
-			slot.contains = distribute_items( slot.position )
+			slot.contains = turtle.distribute( slot.position, slots )
 		end
 
 		if 0 == slot.contains then
