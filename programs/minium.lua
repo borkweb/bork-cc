@@ -1,37 +1,20 @@
 bork_cc.loadAPI('turtle-plus')
 
-local slots = {
-	{
-		id = 2,
-		num = 0
-	},
-	{
-		id = 3,
-		num = 0
-	},
-	{
-		id = 5,
-		num = 0
-	},
-	{
-		id = 6,
-		num = 0
-	}
-}
-
+local slots = { 2, 3, 5, 6 }
 local work = true
+local num = 0
 
 while work do
 	turtle.turnLeft()
 
 	for key,slot in pairs( slots ) do
-		slot.num = turtle.load( slot.id, 'suck' )
+		num = turtle.load( slot, 'suck' )
 
-		if 0 == slot.num then
-			slot.num = turtle.distribute( slot.id, slots )
+		if 0 == num then
+			num = turtle.distribute( slot, slots )
 		end
 
-		if 0 == slot.num then
+		if 0 == num then
 			work = false
 		end
 	end

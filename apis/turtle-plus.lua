@@ -23,11 +23,11 @@ function turtle.distribute( target_slot, slots )
 	-- loop over a collection of slots to locate stacks of > 1 to
 	-- distribute the items to the target_slot
 	for key,slot in pairs( slots ) do
-		if not ( target_slot == slot.id ) then
-			num = turtle.getItemCount( slot.id )
+		if not ( target_slot == slot ) then
+			num = turtle.getItemCount( slot )
 
 			if num > 1 then
-				turtle.select( slot.id )
+				turtle.select( slot )
 				turtle.transferTo( target_slot, 1 )
 				return 1
 			end
