@@ -26,7 +26,7 @@ apis = {
 }
 
 programs = {
-  "minium",
+  "craft",
   "startup"
 }
 
