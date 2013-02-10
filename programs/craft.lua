@@ -8,6 +8,9 @@ local which = 'medium'
 local from = 'left'
 local to = 'right'
 local recipe_type = 'normal'
+local stash = false
+local stash_dir = 'left'
+local stash_this_one = false
 
 print('Should I make a (m)inium or (n)ormal recipe?')
 
@@ -69,6 +72,29 @@ print('');
 
 to = read()
 
+print('')
+print('')
+print('Would you like me to stash every other crafted item?')
+print('(y/n)?')
+print('')
+
+stash = read()
+
+if 'y' == stash then
+	stash = true
+	print('')
+	print('')
+	print('Where do I stash it?')
+	print('  (l)eft, (r)ight,')
+	print('  (b)ack, (f)ront')
+	print('  (u)p, or (d)own')
+	print('');
+
+	stash_dir = read()
+else
+	stash = false
+end
+
 print('');
 print('OK! Will do!');
 
@@ -103,9 +129,18 @@ while work do
 		turtle.select( craft_slot )
 		turtle.craft()
 		turtle.reset_turn( from )
-		turtle.turn( to )
-		turtle.dump( craft_slot, to )
-		turtle.reset_turn( to )
+
+		if stash and stash_this_one then
+			turtle.turn( stash_dir )
+			turtle.dump( craft_slot, to )
+			turtle.reset_turn( stash_dir )
+			stash_this_one = false
+		else
+			turtle.turn( to )
+			turtle.dump( craft_slot, to )
+			turtle.reset_turn( to )
+			stash_this_one = true
+		end
 	else
 		turtle.reset_turn( from )
 		work = true
