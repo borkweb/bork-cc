@@ -42,9 +42,9 @@ end
 function turtle.dump( slot, to )
 	turtle.select( slot )
 
-	if 'u' == to or 'up' == from then
+	if 'u' == to or 'up' == to then
 		turtle.dropUp()
-	elseif 'd' == to or 'down' == from then
+	elseif 'd' == to or 'down' == to then
 		turtle.dropDown()
 	else
 		turtle.drop()
