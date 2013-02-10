@@ -1,7 +1,10 @@
-computercraft-scripts
+Bork ComputerCraft APIs and General Purpose Scripts
 =====================
 
-A collection of my Minecraft (Tekkit) ComputerCraft scripts
+A collection of my Minecraft (Tekkit) ComputerCraft scripts that can be
+used by others without matching the layout of Borkhold (my home on my
+Minecraft server).  If you want to see scripts for the layout of my
+place, check out my [borkhold-cc repository](https://github.com/borkweb/borkhold-cc).
 
 ## Installation
 
@@ -113,6 +116,22 @@ turtle.turn( 'left' )
 turtle.reset_turn( 'left' )
 ````
 
+## Programs
+
+### `bork-cc/programs/craft`
+
+This handy script assumes you have stationary crafty turtles that you
+want to pick up items from an adjacent chest, craft an item (via a
+simple 2x2 recipe of identical items or a simple minium recipe - minium
+stone plus 2, 4, or 8 identical items) and put into another
+adjacent chest.  The chests can be to the left, right, front, back,
+above, or below.
+
+There are a series of prompts that walk you through your options.  As an
+additional feature, you can have your turtle _stash_ every other crafted
+item in a separate chest (this is good when you don't want _all_ of your
+iron to go to the production of gold, for example).
+
 ## Credits
-The installer, bootstrap, and some scripts were cloned from @damien at
+The installer, bootstrap, and startup scripts were cloned from @damien at
 https://github.com/damien/cc-scripts
