@@ -132,7 +132,7 @@ while work do
 
 		if stash and stash_this_one then
 			turtle.turn( stash_dir )
-			turtle.dump( craft_slot, to )
+			turtle.dump( craft_slot, stash_dir )
 			turtle.reset_turn( stash_dir )
 			stash_this_one = false
 		else
