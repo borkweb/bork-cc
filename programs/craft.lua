@@ -22,8 +22,8 @@ else
 	recipe_type = 'normal'
 end
 
-print('')
-print('')
+term.clear()
+term.setCursorPos(1,1)
 print('What type of ' .. recipe_type .. ' recipe should I make?')
 print('-----------');
 if 'minium' == recipe_type then
@@ -51,8 +51,8 @@ else
 	which = 'square'
 end
 
-print('')
-print('')
+term.clear()
+term.setCursorPos(1,1)
 print('Got it. I will make a ' .. which .. ' ' .. recipe_type .. ' recipe.')
 print('');
 print('Where do I get stuff? From my:')
@@ -62,8 +62,8 @@ print('  (u)p, or (d)own')
 
 from = read()
 
-print('')
-print('')
+term.clear()
+term.setCursorPos(1,1)
 print('Where do I put stuff? To my:');
 print('  (l)eft, (r)ight,')
 print('  (b)ack, (f)ront')
@@ -72,8 +72,8 @@ print('');
 
 to = read()
 
-print('')
-print('')
+term.clear()
+term.setCursorPos(1,1)
 print('Would you like me to stash every other crafted item?')
 print('(y/n)?')
 print('')
@@ -82,8 +82,8 @@ stash = read()
 
 if 'y' == stash then
 	stash = true
-	print('')
-	print('')
+	term.clear()
+	term.setCursorPos(1,1)
 	print('Where do I stash it?')
 	print('  (l)eft, (r)ight,')
 	print('  (b)ack, (f)ront')
@@ -95,7 +95,8 @@ else
 	stash = false
 end
 
-print('');
+term.clear()
+term.setCursorPos(1,1)
 print('OK! Will do!');
 
 if 'minium' == recipe_type then
