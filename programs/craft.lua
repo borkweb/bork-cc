@@ -145,7 +145,7 @@ while work do
 	else
 		turtle.reset_turn( from )
 		work = true
-		sleep( 20 )
+		sleep( 1 )
 	end
 
 	sleep( 0.1 )
