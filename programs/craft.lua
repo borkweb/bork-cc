@@ -1,5 +1,6 @@
 bork_cc.loadAPI('turtle-plus')
 
+local args = {...}
 local slots = {}
 local craft_slot = 16
 local work = true
@@ -12,9 +13,12 @@ local stash = false
 local stash_dir = 'left'
 local stash_this_one = false
 
-print('Should I make a (m)inium or (n)ormal recipe?')
-
-recipe_type = read()
+if args[1] then
+	recipe_type = args[1]
+else
+	print('Should I make a (m)inium or (n)ormal recipe?')
+	recipe_type = read()
+end
 
 if 'm' == recipe_type then
 	recipe_type = 'minium'
@@ -22,22 +26,26 @@ else
 	recipe_type = 'normal'
 end
 
-term.clear()
-term.setCursorPos(1,1)
-print('What type of ' .. recipe_type .. ' recipe should I make?')
-print('-----------');
-if 'minium' == recipe_type then
-	print('(s)mall  = minium + 2 slots')
-	print('(m)edium = minium + 4 slots')
-	print('(l)arge  = minium + 10 slots')
+if args[2] then
+	which = args[2]
 else
-	print('(s)quare  = 4 slots in a square')
-	print('Derp. Use an auto crafting table for more complex stuff.')
-end
-print('-----------');
-print('');
+	term.clear()
+	term.setCursorPos(1,1)
+	print('What type of ' .. recipe_type .. ' recipe should I make?')
+	print('-----------');
+	if 'minium' == recipe_type then
+		print('(s)mall  = minium + 2 slots')
+		print('(m)edium = minium + 4 slots')
+		print('(l)arge  = minium + 8 slots')
+	else
+		print('(s)quare  = 4 slots in a square')
+		print('Derp. Use an auto crafting table for more complex stuff.')
+	end
+	print('-----------');
+	print('');
 
-which = read()
+	which = read()
+end
 
 if 'minium' == recipe_type then
 	if 's' == which then
@@ -51,53 +59,73 @@ else
 	which = 'square'
 end
 
-term.clear()
-term.setCursorPos(1,1)
-print('Got it. I will make a ' .. which .. ' ' .. recipe_type .. ' recipe.')
-print('');
-print('Where do I get stuff? From my:')
-print('  (l)eft, (r)ight,')
-print('  (b)ack, (f)ront')
-print('  (u)p, or (d)own')
-
-from = read()
-
-term.clear()
-term.setCursorPos(1,1)
-print('Where do I put stuff? To my:');
-print('  (l)eft, (r)ight,')
-print('  (b)ack, (f)ront')
-print('  (u)p, or (d)own')
-print('');
-
-to = read()
-
-term.clear()
-term.setCursorPos(1,1)
-print('Would you like me to stash every other crafted item?')
-print('(y/n)?')
-print('')
-
-stash = read()
-
-if 'y' == stash then
-	stash = true
+if args[3] then
+	from = args[3]
+else
 	term.clear()
 	term.setCursorPos(1,1)
-	print('Where do I stash it?')
+	print('Got it. I will make a ' .. which .. ' ' .. recipe_type .. ' recipe.')
+	print('');
+	print('Where do I get stuff? From my:')
+	print('  (l)eft, (r)ight,')
+	print('  (b)ack, (f)ront')
+	print('  (u)p, or (d)own')
+
+	from = read()
+end
+
+if args[4] then
+	to = args[4]
+else
+	term.clear()
+	term.setCursorPos(1,1)
+	print('Where do I put stuff? To my:');
 	print('  (l)eft, (r)ight,')
 	print('  (b)ack, (f)ront')
 	print('  (u)p, or (d)own')
 	print('');
 
-	stash_dir = read()
+	to = read()
+end
+
+if args[5] then
+	stash = args[5]
+else
+	term.clear()
+	term.setCursorPos(1,1)
+	print('Would you like me to stash every other crafted item?')
+	print('(y/n)?')
+	print('')
+
+	stash = read()
+end
+
+if 'y' == stash then
+	stash = true
+
+	if args[6] then
+		stash_dir = args[6]
+	else
+		term.clear()
+		term.setCursorPos(1,1)
+		print('Where do I stash it?')
+		print('  (l)eft, (r)ight,')
+		print('  (b)ack, (f)ront')
+		print('  (u)p, or (d)own')
+		print('');
+
+		stash_dir = read()
+	else
 else
 	stash = false
 end
 
 term.clear()
 term.setCursorPos(1,1)
-print('OK! Will do!');
+print('I will make a ' .. which .. ' ' .. recipe_type .. ' recipe, grabbing items from "' .. from .. '" and storing them "' .. to .. '"' );
+if stash then
+	print( 'I will also stash every other item "' .. stash_dir .. '"' );
+end
 
 if 'minium' == recipe_type then
 	if 's' == which or 'small' == which then
