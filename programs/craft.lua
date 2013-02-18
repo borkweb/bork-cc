@@ -115,7 +115,7 @@ if 'y' == stash then
 		print('');
 
 		stash_dir = read()
-	else
+	end
 else
 	stash = false
 end
