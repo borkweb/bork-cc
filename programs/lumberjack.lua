@@ -16,24 +16,24 @@ local log_count = 0
 print('This script requires that a sapling be in slot 1 and a log of the type you are farming in slot 2')
 
 if args[1] then
-	rows_wide = args[1]
+	rows_wide = tonumber( args[1] )
 else
 	print('How many rows wide is this tree farm?')
-	rows_wide = read()
+	rows_wide = tonumber( read() )
 end
 
 if args[2] then
-	rows_long = args[2]
+	rows_long = tonumber( args[2] )
 else
 	print('How many rows long?')
-	rows_long = read()
+	rows_long = tonumber( read() )
 end
 
 if args[3] then
-	spacing = args[3]
+	spacing = tonumber( args[3] )
 else
 	print('How many blocks between trees?')
-	spacing = read()
+	spacing = tonumber( read() )
 end
 
 if args[4] then
@@ -45,10 +45,10 @@ else
 end
 
 if args[5] then
-	distance = args[5]
+	distance = tonumber( args[5] )
 else
 	print('How many spaces between me and the first tree?')
-	distance = read()
+	distance = tonumber( read() )
 end
 
 if args[6] then
@@ -77,27 +77,7 @@ function fell( sapling, log )
 	turtle.select( sapling )
 
 	-- if there is a block and it isn't a sapling
-	if turtle.detect() and not turtle.compare() then
-		turtle.dig()
-		turtle.move('forward', 1)
-
-		turtle.select( log )
-		while turtle.compareUp() do
-			turtle.digUp()
-			turtle.up()
-			height = height + 1
-		end
-
-		for i=1,height,1 do
-			turtle.down()
-		end
-		
-		turtle.move( 'forward', 1 )
-		turtle.turn( 'back' )
-		turtle.select( sapling )
-		turtle.place()
-		turtle.reset_turn( 'back' )
-	else
+	if turtle.compare() then
 		turtle.turn( 'right' )
 		turtle.move( 'forward', 1 )
 		turtle.turn( 'left' )
@@ -105,6 +85,31 @@ function fell( sapling, log )
 		turtle.turn( 'left' )
 		turtle.move( 'forward', 1 )
 		turtle.turn( 'right' )
+	else
+		turtle.select( log )
+		if turtle.compare() then
+			turtle.dig()
+			turtle.move('forward', 1)
+
+			turtle.select( log )
+			while turtle.compareUp() do
+				turtle.digUp()
+				turtle.up()
+				height = height + 1
+			end
+
+			for i=1,height,1 do
+				turtle.down()
+			end
+			
+			turtle.move( 'forward', 1 )
+			turtle.turn( 'back' )
+			turtle.select( sapling )
+			turtle.place()
+			turtle.reset_turn( 'back' )
+		else
+			turtle.move( 'forward', 2 )
+		end
 	end
 end
 
