@@ -100,7 +100,13 @@ function fell( sapling, log )
 			turtle.down()
 		end
 	else
-		turtle.move('forward', 1)
+		turtle.turn( 'right' )
+		turtle.move( 'forward', 1 )
+		turtle.turn( 'left' )
+		turtle.move( 'forward', 2 )
+		turtle.turn( 'left' )
+		turtle.move( 'forward', 1 )
+		turtle.turn( 'right' )
 	end
 end
 
