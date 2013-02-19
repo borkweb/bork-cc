@@ -30,22 +30,29 @@ else
 end
 
 if args[3] then
-	direction = args[3]
+	spacing = args[3]
+else
+	print('How many blocks between trees?')
+	spacing = read()
+end
+
+if args[4] then
+	direction = args[4]
 else
 	print('Which direction (relative to me) does the farm stretch to?')
 	print('Choose: (r)ight or (l)eft?')
 	direction = read()
 end
 
-if args[4] then
-	distance = args[4]
+if args[5] then
+	distance = args[5]
 else
 	print('How many spaces between me and the first tree?')
 	distance = read()
 end
 
-if args[5] then
-	log_drop_dir = args[5]
+if args[6] then
+	log_drop_dir = args[6]
 else
 	print('Where do I drop off logs? To my:')
 	print('  (l)eft, (r)ight,')
@@ -54,8 +61,8 @@ else
 	log_drop_dir = read()
 end
 
-if args[6] then
-	sapling_suck_dir = args[6]
+if args[7] then
+	sapling_suck_dir = args[7]
 else
 	print('Where do I pick up saplings? From my:')
 	print('  (l)eft, (r)ight,')
