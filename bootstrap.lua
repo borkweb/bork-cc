@@ -27,6 +27,7 @@ apis = {
 
 programs = {
   "craft",
+	"lumberjack",
   "startup"
 }
 
