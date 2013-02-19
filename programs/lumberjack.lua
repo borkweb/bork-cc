@@ -88,17 +88,15 @@ function fell( sapling, log )
 			height = height + 1
 		end
 
-		if height > 1 then
-			height = height - 1
-
-			for i=1,height,1 do
-				turtle.down()
-			end
-
-			-- plant a sapling
-			turtle.placeDown()
+		for i=1,height,1 do
 			turtle.down()
 		end
+		
+		turtle.move( 'forward', 1 )
+		turtle.turn( 'back' )
+		turtle.select( sapling )
+		turtle.place()
+		turtle.reset_turn( 'back' )
 	else
 		turtle.turn( 'right' )
 		turtle.move( 'forward', 1 )
@@ -119,40 +117,36 @@ while true do
 	for width=1,rows_wide,1 do
 		for length=1,rows_long,1 do
 			turtle.fell( sapling_slot, log_slot )
-			turtle.move( 'forward', spacing )
+			
+			if length ~= rows_long then
+				turtle.move( 'forward', spacing - 1 )
+			end
 		end
 
-		if width % 2 == 1 then
-			turtle.turn( direction )
-			turtle.move( 'forward', spacing )
-			turtle.reset_turn( direction )
-			turtle.move( 'forward', 1 )
-			turtle.turn( direction )
-			turtle.move( 'forward', 1 )
-			turtle.turn( direction )
-		else
-			turtle.reset_turn( direction )
-			turtle.move( 'forward', spacing )
-			turtle.turn( direction )
-			turtle.move( 'forward', 1 )
-			turtle.reset_turn( direction )
-			turtle.move( 'forward', 1 )
-			turtle.reset_turn( direction )
+		if width ~= rows_wid then
+			if width % 2 == 1 then
+				turtle.turn( direction )
+				turtle.move( 'forward', spacing + 1 )
+				turtle.turn( direction )
+			else
+				turtle.reset_turn( direction )
+				turtle.move( 'forward', spacing + 1 )
+				turtle.reset_turn( direction )
+			end
 		end
 	end
 
 	if width % 2 == 1 then
-		-- if we are in here, we are close to home
-		turtle.turn( direction )
-		turtle.move('back', 1)
-		turtle.turn( direction )
-		turtle.move('forward', rows_long * ( spacing + 1 ) + 1 )
+		-- if we are in here, we are far from home
+		turtle.reset_turn( direction )
+		turtle.move( 'forward', 1 )
+		turtle.reset_turn( direction )
+		turtle.move('forward', rows_long * ( spacing + 1 ) + 2 )
 		turtle.turn( direction )
 	else
-		-- if we are in here, we are far from home
-		turtle.move('forward', 1)
+		-- if we are in here, we are close to home
 		turtle.turn( direction )
-		turtle.move('forward', 1)
+		turtle.move( 'forward', 1 )
 	end
 
 	turtle.move( 'forward', rows_wide * ( spacing + 1 ) - 1 )
