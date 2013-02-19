@@ -75,7 +75,7 @@ function fell( sapling, log )
 		turtle.move('forward', 1)
 
 		turtle.select( log )
-		while turtle.compareUp()
+		while turtle.compareUp() do
 			turtle.digUp()
 			turtle.up()
 			height = height + 1
