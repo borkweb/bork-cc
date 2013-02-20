@@ -102,7 +102,7 @@ while true do
 		end
 
 		if width ~= rows_wide then
-			if width % 2 == 0 then
+			if width % 2 == 1 then
 				turtle.turn( direction )
 				turtle.move( 'forward', spacing + 1 )
 				turtle.turn( direction )
@@ -114,20 +114,20 @@ while true do
 		end
 	end
 
-	if width % 2 == 0 then
+	if width % 2 == 1 then
 		-- if we are in here, we are far from home
-		turtle.reset_turn( direction )
-		turtle.move( 'forward', 1 )
-		turtle.reset_turn( direction )
-		turtle.move('forward', rows_long * ( spacing + 1 ) + 2 )
 		turtle.turn( direction )
+		turtle.move( 'forward', 1 )
+		turtle.turn( direction )
+		turtle.move( 'forward', rows_long * ( spacing + 1 ) )
+		turtle.turn( direction )
+		turtle.move( 'forward', 1 )
 	else
 		-- if we are in here, we are close to home
 		turtle.turn( direction )
-		turtle.move( 'forward', 1 )
 	end
 
-	turtle.move( 'forward', rows_wide * ( spacing + 1 ) - 1 )
+	turtle.move( 'forward', rows_wide * ( spacing + 1 ) )
 	turtle.turn( direction )
 	turtle.move( 'forward', distance - 1 )
 	turtle.turn( direction )
