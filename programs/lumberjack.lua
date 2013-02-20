@@ -15,61 +15,34 @@ local log_count = 0
 
 print('This script requires that a sapling be in slot 1 and a log of the type you are farming in slot 2')
 
-if args[1] then
-	rows_wide = tonumber( args[1] )
-else
-	print('How many rows wide is this tree farm?')
-	rows_wide = tonumber( read() )
+function get_arg( id, message, ... )
+	local value = 0
+
+	if args[ id ] then
+		value = args[ id ]
+	end
+
+	print( message )
+	
+	for i=1,#arg do
+		print( arg[ i ] )
+	end
+
+	value = read()
+
+	print('')
+	print('')
+
+	return value
 end
 
-if args[2] then
-	rows_long = tonumber( args[2] )
-else
-	print('How many rows long?')
-	rows_long = tonumber( read() )
-end
-
-if args[3] then
-	spacing = tonumber( args[3] )
-else
-	print('How many blocks between trees?')
-	spacing = tonumber( read() )
-end
-
-if args[4] then
-	direction = args[4]
-else
-	print('Which direction (relative to me) does the farm stretch to?')
-	print('Choose: (r)ight or (l)eft?')
-	direction = read()
-end
-
-if args[5] then
-	distance = tonumber( args[5] )
-else
-	print('How many spaces between me and the first tree?')
-	distance = tonumber( read() )
-end
-
-if args[6] then
-	log_drop_dir = args[6]
-else
-	print('Where do I drop off logs? To my:')
-	print('  (l)eft, (r)ight,')
-	print('  (b)ack, (f)ront')
-	print('  (u)p, or (d)own')
-	log_drop_dir = read()
-end
-
-if args[7] then
-	sapling_suck_dir = args[7]
-else
-	print('Where do I pick up saplings? From my:')
-	print('  (l)eft, (r)ight,')
-	print('  (b)ack, (f)ront')
-	print('  (u)p, or (d)own')
-	sapling_suck_dir = read()
-end
+rows_wide        = tonumber( get_arg( 1, 'How many rows wide is this tree farm?' ) )
+rows_long        = tonumber( get_arg( 2, 'How many rows long?' ) )
+spacing          = tonumber( get_arg( 3, 'How many blocks between trees?' ) )
+direction        = get_arg( 4, 'How many blocks between trees?', 'Choose: (r)ight or (l)eft' )
+distance         = tonumber( get_arg( 5, 'How many spaces between me and the first tree?' ) )
+log_drop_dir     = get_arg( 6, 'Where do I drop off logs? To my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
+sapling_suck_dir = get_arg( 7, 'Where do I pick up saplings? From my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
 
 function fell( sapling, log )
 	local height = 1
