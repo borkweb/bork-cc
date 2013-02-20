@@ -12,6 +12,8 @@ local direction = 'r'
 local sapling_suck_dir = 0
 local log_drop_dir = 0
 local log_count = 0
+local width = 0
+local length = 0
 
 print('This script requires that a sapling be in slot 1 and a log of the type you are farming in slot 2')
 
