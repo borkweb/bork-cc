@@ -112,7 +112,7 @@ while true do
 		end
 	end
 
-	if width % 2 == 1 then
+	if width % 2 == 0 then
 		-- if we are in here, we are far from home
 		turtle.reset_turn( direction )
 		turtle.move( 'forward', 1 )
