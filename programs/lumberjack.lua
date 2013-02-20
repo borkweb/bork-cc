@@ -90,8 +90,8 @@ while true do
 	turtle.reset_turn( sapling_suck_dir )
 	turtle.move( 'forward', distance )
 
-	for width=1,rows_wide,1 do
-		for length=1,rows_long,1 do
+	for width=1,rows_wide do
+		for length=1,rows_long do
 			fell( sapling_slot, log_slot )
 			
 			if length ~= rows_long then
@@ -99,7 +99,7 @@ while true do
 			end
 		end
 
-		if width ~= rows_wid then
+		if width ~= rows_wide then
 			if width % 2 == 1 then
 				turtle.turn( direction )
 				turtle.move( 'forward', spacing + 1 )
