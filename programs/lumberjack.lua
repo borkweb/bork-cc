@@ -39,7 +39,7 @@ end
 rows_wide        = tonumber( get_arg( 1, 'How many rows wide is this tree farm?' ) )
 rows_long        = tonumber( get_arg( 2, 'How many rows long?' ) )
 spacing          = tonumber( get_arg( 3, 'How many blocks between trees?' ) )
-direction        = get_arg( 4, 'How many blocks between trees?', 'Choose: (r)ight or (l)eft' )
+direction        = get_arg( 4, 'In which direction does the farm extend?', 'Choose: (r)ight or (l)eft' )
 distance         = tonumber( get_arg( 5, 'How many spaces between me and the first tree?' ) )
 log_drop_dir     = get_arg( 6, 'Where do I drop off logs? To my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
 sapling_suck_dir = get_arg( 7, 'Where do I pick up saplings? From my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
@@ -92,7 +92,7 @@ while true do
 
 	for width=1,rows_wide,1 do
 		for length=1,rows_long,1 do
-			turtle.fell( sapling_slot, log_slot )
+			fell( sapling_slot, log_slot )
 			
 			if length ~= rows_long then
 				turtle.move( 'forward', spacing - 1 )
