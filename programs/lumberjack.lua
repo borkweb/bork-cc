@@ -47,24 +47,14 @@ sapling_suck_dir = get_arg( 7, 'Where do I pick up saplings? From my:', '  (l)ef
 function fell( sapling, log )
 	local height = 1
 
-	turtle.select( sapling )
-
 	-- if there is a block and it isn't a sapling
-	if turtle.compare() then
-		turtle.turn( 'right' )
-		turtle.move( 'forward', 1 )
-		turtle.turn( 'left' )
-		turtle.move( 'forward', 2 )
-		turtle.turn( 'left' )
-		turtle.move( 'forward', 1 )
-		turtle.turn( 'right' )
-	else
+	if turtle.detect() then
 		turtle.select( log )
+
 		if turtle.compare() then
 			turtle.dig()
 			turtle.move('forward', 1)
 
-			turtle.select( log )
 			while turtle.compareUp() do
 				turtle.digUp()
 				turtle.up()
@@ -81,8 +71,16 @@ function fell( sapling, log )
 			turtle.place()
 			turtle.reset_turn( 'back' )
 		else
+			turtle.turn( 'right' )
+			turtle.move( 'forward', 1 )
+			turtle.turn( 'left' )
 			turtle.move( 'forward', 2 )
+			turtle.turn( 'left' )
+			turtle.move( 'forward', 1 )
+			turtle.turn( 'right' )
 		end
+	else
+		turtle.move( 'forward', 2 )
 	end
 end
 
