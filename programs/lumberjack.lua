@@ -102,7 +102,7 @@ while true do
 		end
 
 		if width ~= rows_wide then
-			if width % 2 == 1 then
+			if width % 2 == 0 then
 				turtle.turn( direction )
 				turtle.move( 'forward', spacing + 1 )
 				turtle.turn( direction )
