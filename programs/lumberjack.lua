@@ -15,7 +15,13 @@ local log_count = 0
 local width = 0
 local length = 0
 
-print('This script requires that a sapling be in slot 1 and a log of the type you are farming in slot 2')
+print('Lumberjacker v 1.0')
+print('------------------')
+print('Requirements:')
+print('  * Slot 1: saplings')
+print('  * Slot 2: a log of tree being harvested')
+print('------------------')
+sleep( 1 )
 
 function get_arg( id, message, ... )
 	local value = 0
@@ -23,6 +29,9 @@ function get_arg( id, message, ... )
 	if args[ id ] then
 		value = args[ id ]
 	end
+
+	term.clear()
+	term.setCursorPos( 1, 1 )
 
 	print( message )
 	
@@ -38,13 +47,18 @@ function get_arg( id, message, ... )
 	return value
 end
 
-rows_wide        = tonumber( get_arg( 1, 'How many rows wide is this tree farm?' ) )
-rows_long        = tonumber( get_arg( 2, 'How many rows long?' ) )
-spacing          = tonumber( get_arg( 3, 'How many blocks between trees?' ) )
-direction        = get_arg( 4, 'In which direction does the farm extend?', 'Choose: (r)ight or (l)eft' )
+direction        = get_arg( 1, 'In which direction does the farm extend?', 'Choose: (r)ight or (l)eft' )
+rows_wide        = tonumber( get_arg( 2, 'How many rows wide is this tree farm?' ) )
+rows_long        = tonumber( get_arg( 3, 'How many rows long?' ) )
+spacing          = tonumber( get_arg( 4, 'How many blocks between trees?' ) )
 distance         = tonumber( get_arg( 5, 'How many spaces between me and the first tree?' ) )
-log_drop_dir     = get_arg( 6, 'Where do I drop off logs? To my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
-sapling_suck_dir = get_arg( 7, 'Where do I pick up saplings? From my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
+sapling_suck_dir = get_arg( 6, 'I will pick up saplings from my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
+log_drop_dir     = get_arg( 7, 'I will dump logs to my:', '  (l)eft, (r)ight,', '  (b)ack, (f)ront,', '  (u)p, or (d)own' )
+
+term.clear()
+term.setCursorPos( 1, 1 )
+
+print('Harvesting a ' .. rows_wide .. 'x' .. rows_long .. ' farm and dropping logs to my "' .. log_drop_dir .. '"')
 
 function fell( sapling, log )
 	local height = 1
