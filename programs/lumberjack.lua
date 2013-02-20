@@ -119,7 +119,7 @@ while true do
 		turtle.turn( direction )
 		turtle.move( 'forward', 1 )
 		turtle.turn( direction )
-		turtle.move( 'forward', rows_long * ( spacing + 1 ) )
+		turtle.move( 'forward', ( rows_long - 1 ) * ( spacing + 1 ) )
 		turtle.turn( direction )
 		turtle.move( 'forward', 1 )
 	else
