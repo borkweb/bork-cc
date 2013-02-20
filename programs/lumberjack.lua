@@ -114,7 +114,7 @@ while true do
 		end
 	end
 
-	if width % 2 == 1 then
+	if rows_wide % 2 == 1 then
 		-- if we are in here, we are far from home
 		turtle.turn( direction )
 		turtle.move( 'forward', 1 )
