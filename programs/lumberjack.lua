@@ -128,7 +128,7 @@ while true do
 	end
 
 	turtle.move( 'forward', ( rows_wide - 1 ) * ( spacing + 1 ) )
-	turtle.turn( direction )
+	turtle.reset_turn( direction )
 	turtle.move( 'forward', distance - 1 )
 	turtle.turn( direction )
 	turtle.turn( direction )
@@ -145,4 +145,6 @@ while true do
 	turtle.transferTo( 3, log_count - 1 )
 	turtle.dump( 3, log_drop_dir )
 	turtle.reset_turn( log_drop_dir )
+
+	sleep( 1 )
 end
