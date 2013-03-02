@@ -3,6 +3,9 @@
 function turtle.move( dir, times )
 	for i=1,times,1 do
 		while not turtle[dir]() do
+			if turtle.detect() then
+				turtle.attack()
+			end
 			sleep(0.1)
 		end
 	end
